@@ -8,30 +8,18 @@ namespace Source.Scripts.Entities
 {
     public class ShipEntity : BaseEntity
     {
-        public ShipMovementComponent MovementComponent { get; private set; }
-        
-        public ShipEntity(MovementConfig movementConfig, InputState inputState)
+        private ShipMovementComponent _movementComponent;
+        private ShipShootingComponent _shootingComponent;
+
+        public ShipEntity(MovementConfig movementConfig, ShootingConfig shootingConfig, InputState inputState)
         {
-            MovementComponent = new ShipMovementComponent(inputState, movementConfig, Vector2.zero, Vector2.zero, 0);
-            
-            _fixedUpdatableComponents.Add(MovementComponent);
+            _movementComponent = new ShipMovementComponent(inputState, movementConfig, Vector2.zero, Vector2.zero, 0);
+            _shootingComponent = new ShipShootingComponent(shootingConfig, ref _movementComponent.MovementData, inputState);
+
+            _updatableComponents.Add(_shootingComponent);
+            _fixedUpdatableComponents.Add(_movementComponent);
         }
 
-        public override void OnUpdate(float deltaTime)
-        {
-            foreach (var updatableComponent in _updatableComponents)
-            {
-                updatableComponent.OnUpdate(deltaTime);
-            }
-        }
-        
-        public override void OnFixedUpdate(float deltaTime)
-        {
-            foreach (var fixedUpdatableComponent in _fixedUpdatableComponents)
-            {
-                fixedUpdatableComponent.OnUpdate(deltaTime);
-            }
-        }
 
     }
 }
