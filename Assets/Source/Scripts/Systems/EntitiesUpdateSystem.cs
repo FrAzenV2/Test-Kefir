@@ -34,11 +34,18 @@ namespace Source.Scripts.Systems
             baseEntity.OnErase += RemoveEntity;
         }
 
+        public void ClearAllEntities()
+        {
+            _entities.Clear();
+        }
+        
         private void RemoveEntity(BaseEntity entity)
         {
             entity.OnErase -= RemoveEntity;
             _entities.Remove(entity);
         }
+        
+        
 
 
     }
