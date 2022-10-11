@@ -14,6 +14,8 @@ namespace Source.Scripts.Entities
             _movementComponent = new BulletMovementComponent(movementConfig, baseMovementData);
             _dieOverTimeComponent = new DieOverTimeComponent(lifetime);
 
+            _dieOverTimeComponent.Died += Erase;
+
             _fixedUpdatableComponents.Add(_movementComponent);
             _updatableComponents.Add(_dieOverTimeComponent);
         }

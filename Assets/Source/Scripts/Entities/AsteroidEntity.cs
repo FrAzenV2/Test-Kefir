@@ -8,14 +8,14 @@ namespace Source.Scripts.Entities
     {
         private MovementComponent _movementComponent;
         private int _size;
-        
-        public AsteroidEntity (MovementConfig movementConfig, MovementData movementData, int size)
+
+        public AsteroidEntity(MovementConfig movementConfig, MovementData movementData, int size)
         {
             _movementComponent = new MovementComponent(movementConfig, movementData);
             _size = size;
-            
+
             _fixedUpdatableComponents.Add(_movementComponent);
         }
-        
+
     }
 }

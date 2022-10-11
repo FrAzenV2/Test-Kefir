@@ -2,5 +2,7 @@
 
 namespace Source.Scripts.Components.UnityComponents
 {
-    public class EntityView : MonoBehaviour { }
+    public class EntityView : MonoBehaviour
+    {
+    }
 }
