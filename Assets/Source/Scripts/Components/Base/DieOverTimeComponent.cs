@@ -9,9 +9,10 @@ namespace Source.Scripts.Components
 
         private float _lifetime;
 
-        public DieOverTimeComponent(float lifetime)
+        public DieOverTimeComponent(float lifetime, Action OnDied)
         {
             _lifetime = lifetime;
+            Died += OnDied;
         }
 
         public override void OnUpdate(float deltaTime)

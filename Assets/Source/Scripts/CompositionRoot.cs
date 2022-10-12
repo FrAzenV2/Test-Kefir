@@ -1,21 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Source.Scripts.Entities;
-using Unity.VisualScripting;
 using UnityEngine;
 
-namespace Source.Scripts.Systems
+namespace Source.Scripts
 {
-    public class EntitiesUpdateSystem : MonoBehaviour
+    public class CompositionRoot : MonoBehaviour
     {
-        public static EntitiesUpdateSystem Instance;
+        public static CompositionRoot Instance;
 
-        private List<BaseEntity> _entities = new();
+        private List<Entity> _entities = new();
 
         private void Awake()
         {
             if (Instance) Destroy(this);
             else Instance = this;
+            
+            //TODO add systems and factories init here
+            //TODO add configs and prefabs here
         }
 
         private void Update()
@@ -28,10 +29,10 @@ namespace Source.Scripts.Systems
             foreach (var entity in _entities) entity.OnFixedUpdate(Time.fixedDeltaTime);
         }
 
-        public void AddEntity(BaseEntity baseEntity)
+        public void AddEntity(Entity entity)
         {
-            _entities.Add(baseEntity);
-            baseEntity.OnErase += RemoveEntity;
+            _entities.Add(entity);
+            entity.OnErase += RemoveEntity;
         }
 
         public void ClearAllEntities()
@@ -39,7 +40,7 @@ namespace Source.Scripts.Systems
             _entities.Clear();
         }
 
-        private void RemoveEntity(BaseEntity entity)
+        private void RemoveEntity(Entity entity)
         {
             entity.OnErase -= RemoveEntity;
             _entities.Remove(entity);

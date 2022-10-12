@@ -8,15 +8,17 @@ namespace Source.Scripts.Components
         private readonly ShootingConfig _shootingConfig;
         private readonly MovementData _movementData;
         private readonly InputState _inputState;
+        private readonly BulletFactory _bulletFactory;
 
         private float _timer;
 
-        public ShipShootingComponent(ShootingConfig shootingConfig, ref MovementData movementData, InputState inputState)
+        public ShipShootingComponent(ShootingConfig shootingConfig, BulletFactory bulletFactory, InputState inputState, ref MovementData movementData)
         {
             _shootingConfig = shootingConfig;
             _movementData = movementData;
             _inputState = inputState;
-
+            _bulletFactory = bulletFactory;
+            
             _timer = 0;
         }
 
@@ -36,7 +38,7 @@ namespace Source.Scripts.Components
         }
         private void ShootBullet()
         {
-            //TODO add bullet spawning
+            _bulletFactory.Create(_shootingConfig.BulletLifetime, _movementData);
         }
     }
 }

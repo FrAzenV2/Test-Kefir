@@ -33,7 +33,26 @@ namespace Source.Scripts.Components
 
         protected void UpdatePosition(float deltaTime)
         {
+            //TODO HOW TO UPDATE VIEW???
             MovementData.Position += MovementData.Velocity * deltaTime;
+
+            if (MovementData.Position.x > _movementConfig.HorizontalBoundaries.y)
+            {
+                MovementData.Position.x = _movementConfig.HorizontalBoundaries.x;
+            }
+            if (MovementData.Position.x < _movementConfig.HorizontalBoundaries.x)
+            {
+                MovementData.Position.x = _movementConfig.HorizontalBoundaries.y;
+            }
+            if (MovementData.Position.y > _movementConfig.VerticalBoundaries.y)
+            {
+                MovementData.Position.y = _movementConfig.HorizontalBoundaries.x;
+            }
+            if (MovementData.Position.y < _movementConfig.VerticalBoundaries.x)
+            {
+                MovementData.Position.y = _movementConfig.HorizontalBoundaries.y;
+            }
+            
         }
 
     }
