@@ -3,6 +3,7 @@ using Source.Scripts.Components;
 using Source.Scripts.Components.Bullet;
 using Source.Scripts.Components.UnityComponents;
 using Source.Scripts.Configs;
+using Source.Scripts.Data;
 using Source.Scripts.Entities;
 using Source.Scripts.Enums;
 using UnityEngine;
@@ -13,7 +14,7 @@ namespace Source.Scripts
     {
         private readonly MovementConfig _movementConfig;
         private EntityView _prefab;
-        
+
         public BulletFactory(MovementConfig movementConfig, EntityView prefab)
         {
             _movementConfig = movementConfig;
@@ -23,20 +24,20 @@ namespace Source.Scripts
         public Entity Create(float lifetime, MovementData movementData)
         {
             //TODO add view, collision and ignoring certain entity types
-            
-            var entityView = GameObject.Instantiate(_prefab);
-            var entity = new Entity(EntityType.Bullet);
-            
-            var movementComponent = new BulletMovementComponent(_movementConfig, movementData);
+
+            var entityView = Object.Instantiate(_prefab);
+            var entity = new Entity(EntityType.Bullet, entityView);
+
+            var movementComponent = new BulletMovementComponent(_movementConfig, movementData, entityView.transform);
             var dieOverTimeComponent = new DieOverTimeComponent(lifetime, entity.Erase);
-            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Player, EntityType.Bullet, }, null);
-            
-            
+            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Player, EntityType.Bullet }, entityView.OnEntityCollision);
+
+
             entity.FixedUpdatableComponents.Add(movementComponent);
             entity.UpdatableComponents.Add(dieOverTimeComponent);
 
             return entity;
         }
-       
+
     }
 }

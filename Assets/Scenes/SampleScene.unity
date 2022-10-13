@@ -159,7 +159,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -202,7 +202,67 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &557441835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 557441837}
+  - component: {fileID: 557441836}
+  m_Layer: 0
+  m_Name: CompositionRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &557441836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557441835}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484645e0752b4663a9ac023b140be25a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _entityDatas:
+  - Configs:
+    - {fileID: 11400000, guid: aeafd7a6bdb1e8240b3512ae90772283, type: 2}
+    - {fileID: 11400000, guid: 9a66197cfdeb833419eed0087ae7d0a3, type: 2}
+    Prefab: {fileID: 3142885273083768731, guid: 6487035d41dbb4747bfd54c698d7bc98, type: 3}
+    EntityType: 0
+  - Configs:
+    - {fileID: 11400000, guid: c86e5bea31638fa4ea9d694734006792, type: 2}
+    Prefab: {fileID: 1380133482408475649, guid: a6acc87e37e69d54bb12d5616ed3d8fc, type: 3}
+    EntityType: 1
+  - Configs:
+    - {fileID: 11400000, guid: 31e92e156f7cf6746bccd3bfc3062419, type: 2}
+    - {fileID: 11400000, guid: d2b4df06d5af73b4e84373c1cd7a8e3f, type: 2}
+    Prefab: {fileID: 1348532606572144082, guid: 3324e621603eb06478f23550e2e45cfe, type: 3}
+    EntityType: 10
+--- !u!4 &557441837
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 557441835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -17,5 +17,15 @@ namespace Source.Scripts.Components.UnityComponents
         {
             OnTriggerExited?.Invoke(other.gameObject);
         }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            OnTriggerEntered?.Invoke(other.gameObject);
+        }
+
+        private void OnTriggerExit2D(Collider2D other)
+        {
+            OnTriggerExited?.Invoke(other.gameObject);
+        }
     }
 }

@@ -1,27 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
 using Source.Scripts.Components;
+using Source.Scripts.Components.UnityComponents;
 using Source.Scripts.Enums;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Source.Scripts.Entities
 {
     public class Entity
     {
         public EntityType EntityType;
-        
+
         public List<UpdatableComponent> UpdatableComponents = new();
         public List<UpdatableComponent> FixedUpdatableComponents = new();
 
         public event Action<Entity> OnErase;
 
-        public Entity(EntityType entityType)
+        private EntityView _entityView;
+        
+        public Entity(EntityType entityType, EntityView entityView)
         {
             EntityType = entityType;
+            _entityView = entityView;
             CompositionRoot.Instance.AddEntity(this);
         }
 
         public void Erase()
         {
+            Object.Destroy(_entityView.gameObject);
             OnErase?.Invoke(this);
         }
 

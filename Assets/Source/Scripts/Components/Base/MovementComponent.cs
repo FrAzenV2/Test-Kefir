@@ -1,4 +1,5 @@
 ﻿using Source.Scripts.Configs;
+using Source.Scripts.Data;
 using UnityEngine;
 
 namespace Source.Scripts.Components
@@ -9,21 +10,31 @@ namespace Source.Scripts.Components
 
         public MovementData MovementData;
 
-        public MovementComponent(MovementConfig config, Vector2 position, Vector2 velocity, float rotation)
+        //For view update
+        private Transform _viewTransform;
+
+        public MovementComponent(MovementConfig config, Vector2 position, Vector2 velocity, float rotation, Transform viewTransform)
         {
             _movementConfig = config;
             MovementData = new MovementData
             {
                 Position = position,
                 Velocity = velocity,
-                Rotation = rotation
+                Rotation = rotation,
             };
+            _viewTransform = viewTransform;
+            
+            UpdatePosition(0);
         }
 
-        public MovementComponent(MovementConfig config, MovementData movementData)
+        public MovementComponent(MovementConfig config, MovementData movementData, Transform viewTransform)
         {
             _movementConfig = config;
-            MovementData = movementData;
+            _viewTransform = viewTransform;
+            MovementData = new MovementData(movementData);
+            
+            UpdatePosition(0);
+            UpdateRotation(0);
         }
 
         public override void OnUpdate(float deltaTime)
@@ -31,29 +42,29 @@ namespace Source.Scripts.Components
             UpdatePosition(deltaTime);
         }
 
-        protected void UpdatePosition(float deltaTime)
+        private void UpdatePosition(float deltaTime)
         {
-            //TODO HOW TO UPDATE VIEW???
             MovementData.Position += MovementData.Velocity * deltaTime;
 
-            if (MovementData.Position.x > _movementConfig.HorizontalBoundaries.y)
-            {
-                MovementData.Position.x = _movementConfig.HorizontalBoundaries.x;
-            }
-            if (MovementData.Position.x < _movementConfig.HorizontalBoundaries.x)
-            {
-                MovementData.Position.x = _movementConfig.HorizontalBoundaries.y;
-            }
-            if (MovementData.Position.y > _movementConfig.VerticalBoundaries.y)
-            {
-                MovementData.Position.y = _movementConfig.HorizontalBoundaries.x;
-            }
-            if (MovementData.Position.y < _movementConfig.VerticalBoundaries.x)
-            {
-                MovementData.Position.y = _movementConfig.HorizontalBoundaries.y;
-            }
-            
+            if (MovementData.Position.x > _movementConfig.HorizontalBoundaries.y) MovementData.Position.x = _movementConfig.HorizontalBoundaries.x;
+            if (MovementData.Position.x < _movementConfig.HorizontalBoundaries.x) MovementData.Position.x = _movementConfig.HorizontalBoundaries.y;
+            if (MovementData.Position.y > _movementConfig.VerticalBoundaries.y) MovementData.Position.y = _movementConfig.VerticalBoundaries.x;
+            if (MovementData.Position.y < _movementConfig.VerticalBoundaries.x) MovementData.Position.y = _movementConfig.VerticalBoundaries.y;
+
+            _viewTransform.position = MovementData.Position;
         }
+
+        protected virtual void UpdateRotation(float deltaTime)
+        {
+            _viewTransform.eulerAngles = Vector3.forward * MovementData.Rotation;
+        }
+
+        protected virtual void UpdateVelocity(float deltaTime)
+        {
+            if (MovementData.Velocity.magnitude > _movementConfig.MaxVelocity) MovementData.Velocity = MovementData.Velocity.normalized * _movementConfig.MaxVelocity;
+            if (MovementData.Velocity.magnitude < _movementConfig.MinVelocity) MovementData.Velocity = MovementData.Velocity.normalized * _movementConfig.MinVelocity;
+        }
+
 
     }
 }

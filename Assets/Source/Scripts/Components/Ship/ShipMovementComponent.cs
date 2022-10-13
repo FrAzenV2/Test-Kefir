@@ -8,7 +8,7 @@ namespace Source.Scripts.Components
     {
         private readonly InputState _inputState;
 
-        public ShipMovementComponent(InputState inputState, MovementConfig config, Vector2 position, Vector2 velocity, float rotation) : base(config, position, velocity, rotation)
+        public ShipMovementComponent(InputState inputState, MovementConfig config, Vector2 position, Vector2 velocity, float rotation, Transform viewTransform) : base(config, position, velocity, rotation, viewTransform)
         {
             _inputState = inputState;
         }
@@ -20,14 +20,16 @@ namespace Source.Scripts.Components
             base.OnUpdate(deltaTime);
         }
 
-        private void UpdateRotation(float deltaTime)
+        protected override void UpdateRotation(float deltaTime)
         {
             MovementData.Rotation += _inputState.RotationInput * _movementConfig.RotationSpeed * deltaTime;
+            base.UpdateRotation(deltaTime);
         }
 
-        private void UpdateVelocity(float deltaTime)
+        protected virtual void UpdateVelocity(float deltaTime)
         {
             MovementData.Velocity += MovementData.Forward * _inputState.AccelerationInput * _movementConfig.Acceleration * deltaTime;
+            base.UpdateVelocity(deltaTime);
         }
 
 

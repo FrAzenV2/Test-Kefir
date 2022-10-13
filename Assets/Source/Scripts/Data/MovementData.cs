@@ -1,13 +1,23 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-namespace Source.Scripts
+namespace Source.Scripts.Data
 {
-    public struct MovementData
+    [Serializable]
+    public class MovementData
     {
         public Vector2 Position;
         public Vector2 Velocity;
         public float Rotation;
 
-        public Vector2 Forward => new(Mathf.Cos(Rotation * Mathf.Deg2Rad), Mathf.Sin(Rotation * Mathf.Deg2Rad));
+        public MovementData(){}
+        public MovementData(MovementData movementData)
+        {
+            Position = movementData.Position;
+            Velocity = movementData.Velocity;
+            Rotation = movementData.Rotation;
+        }
+
+        public Vector2 Forward => new(-Mathf.Sin(Rotation * Mathf.Deg2Rad), Mathf.Cos(Rotation * Mathf.Deg2Rad));
     }
 }

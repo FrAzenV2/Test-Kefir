@@ -8,8 +8,13 @@ namespace Source.Scripts.Components.UnityComponents
     {
         [SerializeField] private TriggerListener _triggerListener;
 
-        public Entity Entity;
-        public event Action<Entity> OnEntityCollision;
+        private Entity _entity;
+        public Action<Entity> OnEntityCollision;
+
+        public void SetEntity(Entity entity)
+        {
+            _entity = entity;
+        }
 
         private void OnEnable()
         {
@@ -20,12 +25,12 @@ namespace Source.Scripts.Components.UnityComponents
         {
             _triggerListener.OnTriggerEntered -= CheckCollision;
         }
-        
+
         private void CheckCollision(GameObject obj)
         {
-            if(!obj.TryGetComponent(out EntityView entityView)) return;
-            
-            OnEntityCollision?.Invoke(entityView.Entity);
+            if (!obj.TryGetComponent(out EntityView entityView)) return;
+
+            OnEntityCollision?.Invoke(entityView._entity);
         }
 
     }

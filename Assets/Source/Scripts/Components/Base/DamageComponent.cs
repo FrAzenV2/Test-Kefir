@@ -17,11 +17,11 @@ namespace Source.Scripts.Components
 
         private void CheckCollision(Entity entity)
         {
-            if(_ignoreTypes.Contains(entity.EntityType)) return;
-            
+            if (_ignoreTypes.Contains(entity.EntityType)) return;
+
             entity.Erase();
         }
-        
-        
+
+
     }
 }

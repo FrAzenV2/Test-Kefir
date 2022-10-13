@@ -4,8 +4,8 @@
     {
         Player = 0,
         Bullet = 1,
-        
+
         Asteroid = 10,
-        Enemy = 11,
+        Enemy = 11
     }
 }

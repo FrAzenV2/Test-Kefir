@@ -1,4 +1,5 @@
 ﻿using Source.Scripts.Configs;
+using Source.Scripts.Data;
 using Source.Scripts.Input;
 
 namespace Source.Scripts.Components
@@ -12,13 +13,13 @@ namespace Source.Scripts.Components
 
         private float _timer;
 
-        public ShipShootingComponent(ShootingConfig shootingConfig, BulletFactory bulletFactory, InputState inputState, ref MovementData movementData)
+        public ShipShootingComponent(ShootingConfig shootingConfig, BulletFactory bulletFactory, InputState inputState, MovementData movementData)
         {
             _shootingConfig = shootingConfig;
             _movementData = movementData;
             _inputState = inputState;
             _bulletFactory = bulletFactory;
-            
+
             _timer = 0;
         }
 
