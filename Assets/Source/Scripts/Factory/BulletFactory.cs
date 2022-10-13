@@ -27,10 +27,11 @@ namespace Source.Scripts
 
             var entityView = Object.Instantiate(_prefab);
             var entity = new Entity(EntityType.Bullet, entityView);
+            entityView.SetEntity(entity);
 
             var movementComponent = new BulletMovementComponent(_movementConfig, movementData, entityView.transform);
             var dieOverTimeComponent = new DieOverTimeComponent(lifetime, entity.Erase);
-            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Player, EntityType.Bullet }, entityView.OnEntityCollision);
+            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Player, EntityType.Bullet }, ref entityView.OnEntityCollision,entity.Erase);
 
 
             entity.FixedUpdatableComponents.Add(movementComponent);

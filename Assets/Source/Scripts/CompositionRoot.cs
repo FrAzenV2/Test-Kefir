@@ -18,8 +18,8 @@ namespace Source.Scripts
 
         private List<Entity> _entities = new();
         private List<BaseSystem> _baseSystems = new();
-        private List<Entity> _entitiesToRemove = new();
-        private List<Entity> _entitiesToAdd = new();
+        private HashSet<Entity> _entitiesToRemove = new();
+        private HashSet<Entity> _entitiesToAdd = new();
 
         private void Awake()
         {
@@ -87,7 +87,10 @@ namespace Source.Scripts
 
         public void ClearAllEntities()
         {
-            _entitiesToRemove.AddRange(_entities);
+            foreach (var entity in _entities)
+            {
+                _entitiesToRemove.Add(entity);
+            }
         }
 
         private void RemoveEntity(Entity entity)

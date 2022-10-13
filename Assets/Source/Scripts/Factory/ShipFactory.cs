@@ -31,6 +31,8 @@ namespace Source.Scripts
             var entityView = Object.Instantiate(_prefab);
             var entity = new Entity(EntityType.Player,entityView);
 
+            entityView.SetEntity(entity);
+            
             var movementComponent = new ShipMovementComponent(_inputState, _shipMovementConfig, Vector2.zero, Vector2.zero, 0, entityView.transform);
             var shootingComponent = new ShipShootingComponent(_shootingConfig, _bulletFactory, _inputState, movementComponent.MovementData);
 

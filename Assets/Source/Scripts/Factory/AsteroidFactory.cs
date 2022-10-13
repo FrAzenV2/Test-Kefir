@@ -45,7 +45,7 @@ namespace Source.Scripts.Factory
             entityView.SetEntity(entity);
 
             var movementComponent = new MovementComponent(_movementConfig, movementData, entityView.transform);
-            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Asteroid, EntityType.Enemy, EntityType.Bullet }, entityView.OnEntityCollision);
+            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Asteroid, EntityType.Enemy}, ref entityView.OnEntityCollision, entity.Erase);
 
             entity.FixedUpdatableComponents.Add(movementComponent);
             return entity;
