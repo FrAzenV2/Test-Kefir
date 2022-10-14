@@ -16,5 +16,5 @@ MonoBehaviour:
   <MinSize>k__BackingField: 0.4
   <MinReward>k__BackingField: 50
   <MaxReward>k__BackingField: 350
-  <SpawnTick>k__BackingField: 3
-  <MaxAmount>k__BackingField: 4
+  <SpawnTick>k__BackingField: 1
+  <MaxAmount>k__BackingField: 6

@@ -63,7 +63,7 @@ namespace Source.Scripts.Systems
             for (var i = 0; i < 2; i++)
             {
                 previousMovementData.Rotation = Random.Range(0, 360);
-                previousMovementData.Velocity = previousMovementData.Forward * previousMovementData.Velocity.magnitude;
+                previousMovementData.Velocity = previousMovementData.Forward * previousMovementData.Velocity.magnitude * _asteroidsConfig.SplitAsteroidsVelocityMultiplier;
 
                 var newAsteroid = _asteroidFactory.Create(previousMovementData, newSize);
                 _aliveAsteroids.Add(newAsteroid, newSize);

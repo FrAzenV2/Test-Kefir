@@ -17,6 +17,7 @@ namespace Source.Scripts.Configs
         [field: Space] [field: Header("Spawn Properties")]
         [field: SerializeField] public float SpawnTick { get; private set; } = 6;
 
+        [field: SerializeField, Range(1,3)] public float SplitAsteroidsVelocityMultiplier { get; private set; } = 1.4f;
         [field: SerializeField] public float MaxAmount { get; private set; } = 6;
     }
 }

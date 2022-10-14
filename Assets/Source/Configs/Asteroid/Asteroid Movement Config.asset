@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Asteroid Movement Config
   m_EditorClassIdentifier: 
   <MinVelocity>k__BackingField: 0.4
-  <MaxVelocity>k__BackingField: 3
+  <MaxVelocity>k__BackingField: 4
   <HorizontalBoundaries>k__BackingField: {x: -9, y: 9}
   <VerticalBoundaries>k__BackingField: {x: -5, y: 5}
   <Acceleration>k__BackingField: 0
