@@ -33,7 +33,7 @@ namespace Source.Scripts.Factory
 
             var movementComponent = new BulletMovementComponent(_movementConfig, movementData, entityView.transform);
             var dieOverTimeComponent = new DieOverTimeComponent(lifetime, entity.Erase);
-            var damageComponent = new DamageComponent(ignoreTypes, ref entityView.OnEntityCollision,null);
+            var damageComponent = new DamageComponent(ignoreTypes, ref entityView.OnEntityCollision);
 
 
             entity.FixedUpdatableComponents.Add(movementComponent);

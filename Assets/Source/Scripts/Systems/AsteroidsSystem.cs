@@ -76,7 +76,7 @@ namespace Source.Scripts.Systems
         private void CalculateReward(float previousSize)
         {
             var t = Mathf.InverseLerp(_asteroidsConfig.MinSize, _asteroidsConfig.MaxSize, previousSize);
-            var rewardAmount = Mathf.Lerp(_asteroidsConfig.MinReward, _asteroidsConfig.MaxReward, t);
+            var rewardAmount = Mathf.Lerp(_asteroidsConfig.MinReward, _asteroidsConfig.MaxReward, 1-t);
             _rewardCallback?.Invoke(rewardAmount);
         }
         public override void OnFixedUpdate(float deltaTime) { }

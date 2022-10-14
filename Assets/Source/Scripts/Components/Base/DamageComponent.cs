@@ -10,7 +10,7 @@ namespace Source.Scripts.Components
         private readonly List<EntityType> _ignoreTypes;
         private Action _afterHitCallbackCallback;
 
-        public DamageComponent(List<EntityType> ignoreTypes, ref Action<Entity> hitCallback, Action afterHitCallback)
+        public DamageComponent(List<EntityType> ignoreTypes, ref Action<Entity> hitCallback, Action afterHitCallback = null)
         {
             _ignoreTypes = ignoreTypes;
             hitCallback += CheckCollision;

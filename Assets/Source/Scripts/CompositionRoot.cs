@@ -24,7 +24,6 @@ namespace Source.Scripts
             var entityUpdateSystem = new EntityUpdateSystem();
             _baseSystems.Add(entityUpdateSystem);
             
-            
             //INPUT
             var inputState = new InputState();
             var playerInput = new PlayerInput();
