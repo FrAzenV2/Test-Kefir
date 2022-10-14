@@ -255,6 +255,11 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d2b4df06d5af73b4e84373c1cd7a8e3f, type: 2}
     Prefab: {fileID: 1348532606572144082, guid: 3324e621603eb06478f23550e2e45cfe, type: 3}
     EntityType: 10
+  - Configs:
+    - {fileID: 11400000, guid: ff904d1df58f92a498474c2b813d072b, type: 2}
+    - {fileID: 11400000, guid: 8386c3d5409fe8845984a66ba753dd61, type: 2}
+    Prefab: {fileID: 1918630074630483095, guid: bd87c1df7b21a314ca55ce036f951a3b, type: 3}
+    EntityType: 11
 --- !u!4 &557441837
 Transform:
   m_ObjectHideFlags: 0

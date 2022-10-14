@@ -54,6 +54,12 @@ namespace Source.Scripts
 
             var ship = shipFactory.Create();
 
+            var enemyData = _entityDatas.Find(x => x.EntityType == EntityType.Enemy);
+            var enemyFactory = new EnemyFactory(ship, (MovementConfig)enemyData.Configs.Find(x => x is MovementConfig), enemyData.Prefab);
+            var enemiesSystem = new EnemiesSystem((EnemiesSystemConfig)enemyData.Configs.Find(x => x is EnemiesSystemConfig), enemyFactory);
+            
+            _baseSystems.Add(enemiesSystem);
+
             //TODO add ship ui representation and game progress tracking
 
         }
@@ -61,7 +67,7 @@ namespace Source.Scripts
         private void Update()
         {
             foreach (var baseSystem in _baseSystems) baseSystem.OnUpdate(Time.deltaTime);
-
+            
             foreach (var entity in _entitiesToAdd)
             {
                 _entities.Add(entity);
