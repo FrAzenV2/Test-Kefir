@@ -16,7 +16,7 @@ namespace Source.Scripts.Factory
         private readonly MovementConfig _movementConfig;
         private EntityView _prefab;
 
-        public LaserFactory(IEntityUpdater entityUpdater,MovementConfig movementConfig, EntityView prefab)
+        public LaserFactory(IEntityUpdater entityUpdater, MovementConfig movementConfig, EntityView prefab)
         {
             _entityUpdater = entityUpdater;
             _movementConfig = movementConfig;
@@ -40,7 +40,7 @@ namespace Source.Scripts.Factory
             entity.UpdatableComponents.Add(dieOverTimeComponent);
 
             _entityUpdater.AddEntity(entity);
-            
+
             return entity;
         }
     }

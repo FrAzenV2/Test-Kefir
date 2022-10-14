@@ -16,7 +16,7 @@ namespace Source.Scripts
         private readonly MovementConfig _movementConfig;
         private EntityView _prefab;
 
-        public BulletFactory(IEntityUpdater entityUpdater,MovementConfig movementConfig, EntityView prefab)
+        public BulletFactory(IEntityUpdater entityUpdater, MovementConfig movementConfig, EntityView prefab)
         {
             _entityUpdater = entityUpdater;
             _movementConfig = movementConfig;
@@ -34,12 +34,12 @@ namespace Source.Scripts
             var movementComponent = new BulletMovementComponent(_movementConfig, movementData, entityView.transform);
             var dieOverTimeComponent = new DieOverTimeComponent(lifetime, entity.Erase);
             var damageComponent = new DamageComponent(ignoreTypes, ref entityView.OnEntityCollision, entity.Erase);
-            
+
             entity.FixedUpdatableComponents.Add(movementComponent);
             entity.UpdatableComponents.Add(dieOverTimeComponent);
 
             _entityUpdater.AddEntity(entity);
-            
+
             return entity;
         }
 

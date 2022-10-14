@@ -10,7 +10,7 @@ namespace Source.Scripts.Configs
         [field: SerializeField] public float LaserLifetime { get; private set; } = 0.2f;
 
         [field: SerializeField] public int MaxLasers { get; private set; } = 3;
-        
+
         [field: SerializeField] public float LaserCooldown { get; private set; } = 2;
     }
 }

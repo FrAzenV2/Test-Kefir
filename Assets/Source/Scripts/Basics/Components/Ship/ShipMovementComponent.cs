@@ -28,7 +28,7 @@ namespace Source.Scripts.Components
 
         protected virtual void UpdateVelocity(float deltaTime)
         {
-            if(_inputState.AccelerationInput)
+            if (_inputState.AccelerationInput)
                 MovementData.Velocity += MovementData.Forward * _movementConfig.Acceleration * deltaTime;
             base.UpdateVelocity(deltaTime);
         }

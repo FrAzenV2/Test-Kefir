@@ -12,7 +12,7 @@ namespace Source.Scripts.Systems
         private readonly EnemiesSystemConfig _config;
         private readonly EnemyFactory _enemyFactory;
 
-        private readonly List<Entity> _activeEnemies = new ();
+        private readonly List<Entity> _activeEnemies = new();
         private float _cooldownTimer;
 
         private Action<float> _rewardCallback;
@@ -33,12 +33,12 @@ namespace Source.Scripts.Systems
 
         private void TryToSpawnEnemies(float deltaTime)
         {
-            if(_activeEnemies.Count>0) return;
+            if (_activeEnemies.Count > 0) return;
 
             _cooldownTimer += deltaTime;
 
             if (_cooldownTimer < _config.SpawnCooldown) return;
-            
+
             SpawnEnemies();
             _cooldownTimer = 0;
 
@@ -54,7 +54,7 @@ namespace Source.Scripts.Systems
                 entity.OnErase += EraseEnemyFromActiveEntities;
             }
         }
-        
+
         private void EraseEnemyFromActiveEntities(Entity entity)
         {
             entity.OnErase -= EraseEnemyFromActiveEntities;

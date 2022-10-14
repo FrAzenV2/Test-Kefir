@@ -16,17 +16,14 @@ namespace Source.Scripts.Data
             {
                 rotation = value;
 
-                if (Mathf.Abs(rotation) > 360)
-                {
-                    rotation += Mathf.Sign(rotation) * (-360);
-                }
+                if (Mathf.Abs(rotation) > 360) rotation += Mathf.Sign(rotation) * -360;
             }
         }
 
 
         private float rotation;
-        
-        public MovementData(){}
+
+        public MovementData() { }
         public MovementData(MovementData movementData)
         {
             Position = movementData.Position;

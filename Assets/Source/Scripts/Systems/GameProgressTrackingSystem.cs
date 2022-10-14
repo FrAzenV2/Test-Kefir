@@ -13,7 +13,7 @@ namespace Source.Scripts.Systems
         private readonly IEntityUpdater _entityUpdater;
         private readonly MonoBehaviour _systemsUpdater;
         private readonly PlayerDataView _playerDataView;
-        
+
         private float _inGameTime;
         private float _totalScore;
 
@@ -28,9 +28,9 @@ namespace Source.Scripts.Systems
 
             _totalScore = 0;
             _inGameTime = 0;
-            
+
             _playerDataView.UpdateTotalScore((int)_totalScore);
-            
+
             playerEntity.OnErase += _ => OnPlayerDied();
         }
 
@@ -39,7 +39,7 @@ namespace Source.Scripts.Systems
             _totalScore += amount;
             _playerDataView.UpdateTotalScore((int)_totalScore);
         }
-        
+
         private void OnPlayerDied()
         {
             _entityUpdater.RemoveAllEntities();
@@ -57,8 +57,8 @@ namespace Source.Scripts.Systems
             _playerDataView.UpdateTotalTime((int)_inGameTime);
             _playerDataView.UpdateRotationText(_playerMovementData.Rotation);
         }
-        
-        
-        public override void OnFixedUpdate(float deltaTime){}
+
+
+        public override void OnFixedUpdate(float deltaTime) { }
     }
 }

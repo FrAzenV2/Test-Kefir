@@ -1,0 +1,17 @@
+{
+    "name": "BasicsAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a3740544713610c478f27a2976bef76a",
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

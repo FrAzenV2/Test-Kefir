@@ -34,11 +34,11 @@ namespace Source.Scripts.Factory
             entityView.SetEntity(entity);
 
             var movementComponent = new EnemyMovementComponent(_targetMovementData, _movementConfig, Random.insideUnitCircle.normalized * 10, Vector2.one * Random.Range(_movementConfig.MinVelocity, _movementConfig.MaxVelocity), 0, entityView.transform);
-            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Enemy, EntityType.Asteroid }, ref entityView.OnEntityCollision,null);
-            
+            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Enemy, EntityType.Asteroid }, ref entityView.OnEntityCollision, null);
+
             entity.FixedUpdatableComponents.Add(movementComponent);
             _entityUpdater.AddEntity(entity);
-            
+
             return entity;
         }
     }

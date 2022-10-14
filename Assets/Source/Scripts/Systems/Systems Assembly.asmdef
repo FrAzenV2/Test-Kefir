@@ -1,0 +1,19 @@
+{
+    "name": "SystemsAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:4c868c8f5d513d642ada5342a4844235",
+        "GUID:a3740544713610c478f27a2976bef76a",
+        "GUID:7b30fcbbe7c9a674c9b29ac1884df4e1",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

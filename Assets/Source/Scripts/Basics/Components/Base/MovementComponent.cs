@@ -20,10 +20,10 @@ namespace Source.Scripts.Components
             {
                 Position = position,
                 Velocity = velocity,
-                Rotation = rotation,
+                Rotation = rotation
             };
             _viewTransform = viewTransform;
-            
+
             UpdatePosition(0);
         }
 
@@ -32,7 +32,7 @@ namespace Source.Scripts.Components
             _movementConfig = config;
             _viewTransform = viewTransform;
             MovementData = new MovementData(movementData);
-            
+
             UpdatePosition(0);
             UpdateRotation(0);
         }

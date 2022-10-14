@@ -23,7 +23,7 @@ namespace Source.Scripts.Components
 
             entity.Erase();
             _afterHitCallbackCallback?.Invoke();
-            
+
         }
 
 

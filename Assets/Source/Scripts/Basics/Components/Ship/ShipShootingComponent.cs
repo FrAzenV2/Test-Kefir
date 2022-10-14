@@ -14,7 +14,7 @@ namespace Source.Scripts.Components
         private readonly InputState _inputState;
         private readonly BulletFactory _bulletFactory;
         private readonly LaserFactory _laserFactory;
-        
+
         private int _currentLasers;
         private float _lasersCooldown;
         private float _timer;
@@ -43,10 +43,10 @@ namespace Source.Scripts.Components
 
         private void TryToGiveLaser(float deltaTime)
         {
-            if(_currentLasers >= _shootingConfig.MaxLasers) return;
+            if (_currentLasers >= _shootingConfig.MaxLasers) return;
             _lasersCooldown += deltaTime;
-            
-            if(_lasersCooldown < _shootingConfig.LaserCooldown) return;
+
+            if (_lasersCooldown < _shootingConfig.LaserCooldown) return;
             _lasersCooldown = 0;
             _currentLasers++;
         }
@@ -55,22 +55,22 @@ namespace Source.Scripts.Components
         {
             _timer += deltaTime;
 
-            if (_timer < _shootingConfig.BulletShotCooldown || !(_inputState.ShootInput || (_inputState.SpecialShootInput&&_currentLasers>0))) return;
+            if (_timer < _shootingConfig.BulletShotCooldown || !(_inputState.ShootInput || _inputState.SpecialShootInput && _currentLasers > 0)) return;
 
-            if (_inputState.SpecialShootInput && _currentLasers>0)
+            if (_inputState.SpecialShootInput && _currentLasers > 0)
                 ShootLaser();
-            else if(_inputState.ShootInput)
+            else if (_inputState.ShootInput)
                 ShootBullet();
             _timer = 0;
         }
         private void ShootLaser()
         {
             _currentLasers--;
-            _laserFactory.Create(_shootingConfig.LaserLifetime, _movementData, new List<EntityType>(){ EntityType.Player, EntityType.Laser });
+            _laserFactory.Create(_shootingConfig.LaserLifetime, _movementData, new List<EntityType>() { EntityType.Player, EntityType.Laser });
         }
         private void ShootBullet()
         {
-            _bulletFactory.Create(_shootingConfig.BulletLifetime, _movementData, new List<EntityType>() { EntityType.Player, EntityType.Bullet, EntityType.Laser});
+            _bulletFactory.Create(_shootingConfig.BulletLifetime, _movementData, new List<EntityType>() { EntityType.Player, EntityType.Bullet, EntityType.Laser });
         }
     }
 }

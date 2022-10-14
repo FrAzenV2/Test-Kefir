@@ -43,16 +43,16 @@ namespace Source.Scripts.Factory
             var entityView = Object.Instantiate(_prefab);
             entityView.transform.localScale = Vector3.one * size;
 
-            var entity = new Entity(EntityType.Asteroid,entityView);
+            var entity = new Entity(EntityType.Asteroid, entityView);
             entityView.SetEntity(entity);
 
             var movementComponent = new MovementComponent(_movementConfig, movementData, entityView.transform);
-            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Asteroid, EntityType.Enemy}, ref entityView.OnEntityCollision, entity.Erase);
+            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Asteroid, EntityType.Enemy }, ref entityView.OnEntityCollision, entity.Erase);
 
             entity.FixedUpdatableComponents.Add(movementComponent);
-            
+
             _entityUpdater.AddEntity(entity);
-            
+
             return entity;
         }
 

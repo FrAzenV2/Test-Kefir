@@ -16,14 +16,14 @@ namespace Source.Scripts
     {
         [SerializeField] private PlayerDataView _playerDataView;
         [SerializeField] private List<EntityData> _entityDatas = new();
-        
+
         private List<BaseSystem> _baseSystems = new();
-        
+
         private void Awake()
         {
             var entityUpdateSystem = new EntityUpdateSystem();
             _baseSystems.Add(entityUpdateSystem);
-            
+
             //INPUT
             var inputState = new InputState();
             var playerInput = new PlayerInput();
@@ -34,23 +34,23 @@ namespace Source.Scripts
 
             //BULLETS
             var bulletsData = _entityDatas.Find(x => x.EntityType == EntityType.Bullet);
-            var bulletFactory = new BulletFactory(entityUpdateSystem,(MovementConfig)bulletsData.Configs.Find(x => x is MovementConfig), bulletsData.Prefab);
+            var bulletFactory = new BulletFactory(entityUpdateSystem, (MovementConfig)bulletsData.Configs.Find(x => x is MovementConfig), bulletsData.Prefab);
 
             //LASERS
             var lasersData = _entityDatas.Find(x => x.EntityType == EntityType.Laser);
-            var lasersFactory = new LaserFactory(entityUpdateSystem,(MovementConfig)lasersData.Configs.Find(x => x is MovementConfig), lasersData.Prefab);
+            var lasersFactory = new LaserFactory(entityUpdateSystem, (MovementConfig)lasersData.Configs.Find(x => x is MovementConfig), lasersData.Prefab);
 
             //PLAYER SHIP
             var shipData = _entityDatas.Find(x => x.EntityType == EntityType.Player);
-            var shipFactory = new ShipFactory(entityUpdateSystem,(MovementConfig)shipData.Configs.Find(x => x is MovementConfig),
+            var shipFactory = new ShipFactory(entityUpdateSystem, (MovementConfig)shipData.Configs.Find(x => x is MovementConfig),
                 (ShootingConfig)shipData.Configs.Find(x => x is ShootingConfig), bulletFactory, lasersFactory, inputState, shipData.Prefab);
 
             var ship = shipFactory.Create();
 
             //GAME PROGRESS TRACKING
-            var gameProgressTracking = new GameProgressTrackingSystem(ship, entityUpdateSystem, this,_playerDataView);
+            var gameProgressTracking = new GameProgressTrackingSystem(ship, entityUpdateSystem, this, _playerDataView);
             _baseSystems.Add(gameProgressTracking);
-            
+
             //ASTEROIDS
             var asteroidsData = _entityDatas.Find(x => x.EntityType == EntityType.Asteroid);
             var asteroidsFactory = new AsteroidFactory(entityUpdateSystem, (MovementConfig)asteroidsData.Configs.Find(x => x is MovementConfig), asteroidsData.Prefab);
@@ -79,7 +79,7 @@ namespace Source.Scripts
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        
+
     }
 
     [Serializable]

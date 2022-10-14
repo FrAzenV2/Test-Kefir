@@ -18,7 +18,7 @@ namespace Source.Scripts.Entities
         public event Action<Entity> OnErase;
 
         private EntityView _entityView;
-        
+
         public Entity(EntityType entityType, EntityView entityView)
         {
             EntityType = entityType;

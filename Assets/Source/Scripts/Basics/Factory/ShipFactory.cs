@@ -19,7 +19,7 @@ namespace Source.Scripts
         private readonly LaserFactory _laserFactory;
         private EntityView _prefab;
 
-        public ShipFactory(IEntityUpdater entityUpdater,MovementConfig shipMovementConfig, ShootingConfig shipShootingConfig, BulletFactory bulletFactory, LaserFactory laserFactory, InputState inputState, EntityView prefab)
+        public ShipFactory(IEntityUpdater entityUpdater, MovementConfig shipMovementConfig, ShootingConfig shipShootingConfig, BulletFactory bulletFactory, LaserFactory laserFactory, InputState inputState, EntityView prefab)
         {
             _entityUpdater = entityUpdater;
             _shipMovementConfig = shipMovementConfig;
@@ -34,10 +34,10 @@ namespace Source.Scripts
         {
             //TODO add view
             var entityView = Object.Instantiate(_prefab);
-            var entity = new Entity(EntityType.Player,entityView);
+            var entity = new Entity(EntityType.Player, entityView);
 
             entityView.SetEntity(entity);
-            
+
             var movementComponent = new ShipMovementComponent(_inputState, _shipMovementConfig, Vector2.zero, Vector2.zero, 0, entityView.transform);
             var shootingComponent = new ShipShootingComponent(_shootingConfig, _bulletFactory, _laserFactory, _inputState, movementComponent.MovementData);
 
@@ -45,7 +45,7 @@ namespace Source.Scripts
             entity.UpdatableComponents.Add(shootingComponent);
 
             _entityUpdater.AddEntity(entity);
-            
+
             return entity;
         }
 
