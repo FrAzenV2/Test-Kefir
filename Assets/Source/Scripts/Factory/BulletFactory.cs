@@ -12,16 +12,18 @@ namespace Source.Scripts
 {
     public class BulletFactory
     {
+        private readonly IEntityUpdater _entityUpdater;
         private readonly MovementConfig _movementConfig;
         private EntityView _prefab;
 
-        public BulletFactory(MovementConfig movementConfig, EntityView prefab)
+        public BulletFactory(IEntityUpdater entityUpdater,MovementConfig movementConfig, EntityView prefab)
         {
+            _entityUpdater = entityUpdater;
             _movementConfig = movementConfig;
             _prefab = prefab;
         }
 
-        public Entity Create(float lifetime, MovementData movementData)
+        public Entity Create(float lifetime, MovementData movementData, List<EntityType> ignoreTypes)
         {
             //TODO add view, collision and ignoring certain entity types
 
@@ -31,12 +33,13 @@ namespace Source.Scripts
 
             var movementComponent = new BulletMovementComponent(_movementConfig, movementData, entityView.transform);
             var dieOverTimeComponent = new DieOverTimeComponent(lifetime, entity.Erase);
-            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Player, EntityType.Bullet, EntityType.Laser }, ref entityView.OnEntityCollision,entity.Erase);
-
-
+            var damageComponent = new DamageComponent(ignoreTypes, ref entityView.OnEntityCollision, entity.Erase);
+            
             entity.FixedUpdatableComponents.Add(movementComponent);
             entity.UpdatableComponents.Add(dieOverTimeComponent);
 
+            _entityUpdater.AddEntity(entity);
+            
             return entity;
         }
 

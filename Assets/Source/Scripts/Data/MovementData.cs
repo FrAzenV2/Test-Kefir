@@ -8,8 +8,24 @@ namespace Source.Scripts.Data
     {
         public Vector2 Position;
         public Vector2 Velocity;
-        public float Rotation;
+        public float Rotation
+        {
+            get => rotation;
 
+            set
+            {
+                rotation = value;
+
+                if (Mathf.Abs(rotation) > 360)
+                {
+                    rotation += Mathf.Sign(rotation) * (-360);
+                }
+            }
+        }
+
+
+        private float rotation;
+        
         public MovementData(){}
         public MovementData(MovementData movementData)
         {

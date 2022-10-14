@@ -14,11 +14,13 @@ namespace Source.Scripts.Factory
 {
     public class AsteroidFactory
     {
+        private readonly IEntityUpdater _entityUpdater;
         private readonly MovementConfig _movementConfig;
         private EntityView _prefab;
 
-        public AsteroidFactory(MovementConfig movementConfig, EntityView prefab)
+        public AsteroidFactory(IEntityUpdater entityUpdater, MovementConfig movementConfig, EntityView prefab)
         {
+            _entityUpdater = entityUpdater;
             _movementConfig = movementConfig;
             _prefab = prefab;
         }
@@ -48,6 +50,9 @@ namespace Source.Scripts.Factory
             var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Asteroid, EntityType.Enemy}, ref entityView.OnEntityCollision, entity.Erase);
 
             entity.FixedUpdatableComponents.Add(movementComponent);
+            
+            _entityUpdater.AddEntity(entity);
+            
             return entity;
         }
 

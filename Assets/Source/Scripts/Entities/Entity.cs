@@ -23,7 +23,6 @@ namespace Source.Scripts.Entities
         {
             EntityType = entityType;
             _entityView = entityView;
-            CompositionRoot.Instance.AddEntity(this);
         }
 
         public void Erase()

@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Source.Scripts.Configs;
 using Source.Scripts.Entities;
 using Source.Scripts.Factory;
-using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Source.Scripts.Systems
 {
@@ -14,10 +15,13 @@ namespace Source.Scripts.Systems
         private readonly List<Entity> _activeEnemies = new ();
         private float _cooldownTimer;
 
-        public EnemiesSystem(EnemiesSystemConfig config, EnemyFactory enemyFactory)
+        private Action<float> _rewardCallback;
+
+        public EnemiesSystem(EnemiesSystemConfig config, EnemyFactory enemyFactory, Action<float> rewardCallback)
         {
             _config = config;
             _enemyFactory = enemyFactory;
+            _rewardCallback = rewardCallback;
 
             _cooldownTimer = 0;
         }
@@ -55,6 +59,7 @@ namespace Source.Scripts.Systems
         {
             entity.OnErase -= EraseEnemyFromActiveEntities;
             _activeEnemies.Remove(entity);
+            _rewardCallback?.Invoke(_config.Reward);
         }
 
         public override void OnFixedUpdate(float deltaTime) { }

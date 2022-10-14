@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Source.Scripts.Components;
-using Source.Scripts.Components.UnityComponents;
 using Source.Scripts.Configs;
 using Source.Scripts.Entities;
 using Source.Scripts.Factory;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace Source.Scripts.Systems
 {
@@ -12,15 +13,17 @@ namespace Source.Scripts.Systems
     {
         private readonly AsteroidsConfig _asteroidsConfig;
         private readonly AsteroidFactory _asteroidFactory;
+        private Action<float> _rewardCallback;
 
         private Dictionary<Entity, float> _aliveAsteroids = new();
 
         private float _timer;
 
-        public AsteroidsSystem(AsteroidsConfig asteroidsConfig, MovementConfig asteroidMovementConfig, EntityView entityView)
+        public AsteroidsSystem(AsteroidsConfig asteroidsConfig, AsteroidFactory asteroidFactory, Action<float> rewardCallback)
         {
             _asteroidsConfig = asteroidsConfig;
-            _asteroidFactory = new AsteroidFactory(asteroidMovementConfig, entityView);
+            _asteroidFactory = asteroidFactory;
+            _rewardCallback = rewardCallback;
             _timer = 0;
         }
 
@@ -49,7 +52,7 @@ namespace Source.Scripts.Systems
 
             var previousSize = _aliveAsteroids[asteroid];
 
-            GetReward(previousSize);
+            CalculateReward(previousSize);
             _aliveAsteroids.Remove(asteroid);
 
             var newSize = previousSize / 2;
@@ -70,11 +73,11 @@ namespace Source.Scripts.Systems
                 newAsteroid.OnErase += TryToSplit;
             }
         }
-        private void GetReward(float previousSize)
+        private void CalculateReward(float previousSize)
         {
             var t = Mathf.InverseLerp(_asteroidsConfig.MinSize, _asteroidsConfig.MaxSize, previousSize);
             var rewardAmount = Mathf.Lerp(_asteroidsConfig.MinReward, _asteroidsConfig.MaxReward, t);
-            //TODO translate it to game view smh and add total score
+            _rewardCallback?.Invoke(rewardAmount);
         }
         public override void OnFixedUpdate(float deltaTime) { }
     }

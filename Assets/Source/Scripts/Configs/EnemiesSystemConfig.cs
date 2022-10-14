@@ -7,6 +7,8 @@ namespace Source.Scripts.Configs
     {
         [field: SerializeField] public int MaxEnemiesPerSpawn { get; private set; } = 3;
         [field: SerializeField] public int MinEnemiesPerSpawn { get; private set; } = 1;
+        
+        [field: SerializeField] public int Reward { get; private set; } = 250;
 
         [field: Header("Cooldown Starts when all enemies are dead")]
         [field: SerializeField] public float SpawnCooldown { get; private set; } = 30;

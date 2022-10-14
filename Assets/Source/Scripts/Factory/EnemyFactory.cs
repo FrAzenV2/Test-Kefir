@@ -13,12 +13,14 @@ namespace Source.Scripts.Factory
 {
     public class EnemyFactory
     {
+        private readonly IEntityUpdater _entityUpdater;
         private readonly MovementConfig _movementConfig;
         private readonly MovementData _targetMovementData;
         private EntityView _prefab;
 
-        public EnemyFactory(Entity targetEntity, MovementConfig movementConfig, EntityView prefab)
+        public EnemyFactory(IEntityUpdater entityUpdater, Entity targetEntity, MovementConfig movementConfig, EntityView prefab)
         {
+            _entityUpdater = entityUpdater;
             _movementConfig = movementConfig;
             _prefab = prefab;
 
@@ -35,7 +37,8 @@ namespace Source.Scripts.Factory
             var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Enemy, EntityType.Asteroid }, ref entityView.OnEntityCollision,null);
             
             entity.FixedUpdatableComponents.Add(movementComponent);
-
+            _entityUpdater.AddEntity(entity);
+            
             return entity;
         }
     }

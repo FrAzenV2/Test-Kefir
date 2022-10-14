@@ -11,6 +11,7 @@ namespace Source.Scripts
 {
     public class ShipFactory
     {
+        private readonly IEntityUpdater _entityUpdater;
         private readonly MovementConfig _shipMovementConfig;
         private readonly ShootingConfig _shootingConfig;
         private readonly InputState _inputState;
@@ -18,8 +19,9 @@ namespace Source.Scripts
         private readonly LaserFactory _laserFactory;
         private EntityView _prefab;
 
-        public ShipFactory(MovementConfig shipMovementConfig, ShootingConfig shipShootingConfig, BulletFactory bulletFactory, LaserFactory laserFactory, InputState inputState, EntityView prefab)
+        public ShipFactory(IEntityUpdater entityUpdater,MovementConfig shipMovementConfig, ShootingConfig shipShootingConfig, BulletFactory bulletFactory, LaserFactory laserFactory, InputState inputState, EntityView prefab)
         {
+            _entityUpdater = entityUpdater;
             _shipMovementConfig = shipMovementConfig;
             _shootingConfig = shipShootingConfig;
             _bulletFactory = bulletFactory;
@@ -42,6 +44,8 @@ namespace Source.Scripts
             entity.FixedUpdatableComponents.Add(movementComponent);
             entity.UpdatableComponents.Add(shootingComponent);
 
+            _entityUpdater.AddEntity(entity);
+            
             return entity;
         }
 
