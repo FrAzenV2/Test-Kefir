@@ -17,4 +17,5 @@ MonoBehaviour:
   <HorizontalBoundaries>k__BackingField: {x: -9, y: 9}
   <VerticalBoundaries>k__BackingField: {x: -5, y: 5}
   <Acceleration>k__BackingField: 0
+  <Deceleration>k__BackingField: 0
   <RotationSpeed>k__BackingField: 0

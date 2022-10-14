@@ -12,6 +12,7 @@ namespace Source.Scripts.Configs
         [field: SerializeField] public Vector2 VerticalBoundaries { get; private set; } = new(-5, 5);
 
         [field: SerializeField] public float Acceleration { get; private set; } = 10;
+        [field: SerializeField] public float Deceleration { get; private set; } = 0.8f;
         [field: SerializeField] public float RotationSpeed { get; private set; } = 180;
     }
 }

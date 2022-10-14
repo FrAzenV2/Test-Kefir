@@ -61,6 +61,7 @@ namespace Source.Scripts.Components
 
         protected virtual void UpdateVelocity(float deltaTime)
         {
+            MovementData.Velocity = MovementData.Velocity.normalized * (MovementData.Velocity.magnitude - _movementConfig.Deceleration * deltaTime);
             if (MovementData.Velocity.magnitude > _movementConfig.MaxVelocity) MovementData.Velocity = MovementData.Velocity.normalized * _movementConfig.MaxVelocity;
             if (MovementData.Velocity.magnitude < _movementConfig.MinVelocity) MovementData.Velocity = MovementData.Velocity.normalized * _movementConfig.MinVelocity;
         }

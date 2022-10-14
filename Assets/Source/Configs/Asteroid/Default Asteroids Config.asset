@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bc4cc964fb54e9691980bb76a751d41, type: 3}
   m_Name: Default Asteroids Config
   m_EditorClassIdentifier: 
-  <MaxSize>k__BackingField: 1.6
+  <MaxSize>k__BackingField: 1.4
   <MinSize>k__BackingField: 0.4
   <MinReward>k__BackingField: 50
   <MaxReward>k__BackingField: 350
   <SpawnTick>k__BackingField: 1
-  <MaxAmount>k__BackingField: 6
+  <SplitAsteroidsVelocityMultiplier>k__BackingField: 1.4
+  <MaxAmount>k__BackingField: 3

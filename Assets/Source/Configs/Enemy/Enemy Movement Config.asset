@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 399bd39c642c479592e261fe36f54210, type: 3}
   m_Name: Enemy Movement Config
   m_EditorClassIdentifier: 
-  <MinVelocity>k__BackingField: 4
-  <MaxVelocity>k__BackingField: 6
+  <MinVelocity>k__BackingField: 0.7
+  <MaxVelocity>k__BackingField: 2
   <HorizontalBoundaries>k__BackingField: {x: -9, y: 9}
   <VerticalBoundaries>k__BackingField: {x: -5, y: 5}
   <Acceleration>k__BackingField: 0
-  <RotationSpeed>k__BackingField: 0
+  <Deceleration>k__BackingField: 0
+  <RotationSpeed>k__BackingField: 60
