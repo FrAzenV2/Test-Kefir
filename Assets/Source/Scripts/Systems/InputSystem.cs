@@ -18,6 +18,7 @@ namespace Source.Scripts.Systems
             _inputState.AccelerationInput = _input.Ship.Accelerate.ReadValue<float>();
             _inputState.RotationInput = _input.Ship.Rotate.ReadValue<float>();
             _inputState.ShootInput = _input.Ship.Shoot.IsPressed();
+            _inputState.SpecialShootInput = _input.Ship.ShootSpecial.IsPressed();
         }
 
         public override void OnFixedUpdate(float deltaTime)

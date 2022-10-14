@@ -247,6 +247,10 @@ MonoBehaviour:
     Prefab: {fileID: 1380133482408475649, guid: a6acc87e37e69d54bb12d5616ed3d8fc, type: 3}
     EntityType: 1
   - Configs:
+    - {fileID: 11400000, guid: 8837292380ace124491fba1951d1b36e, type: 2}
+    Prefab: {fileID: 6251398378560181486, guid: 5dd7c9ffb66c45f46a9fe760a93327bf, type: 3}
+    EntityType: 2
+  - Configs:
     - {fileID: 11400000, guid: 31e92e156f7cf6746bccd3bfc3062419, type: 2}
     - {fileID: 11400000, guid: d2b4df06d5af73b4e84373c1cd7a8e3f, type: 2}
     Prefab: {fileID: 1348532606572144082, guid: 3324e621603eb06478f23550e2e45cfe, type: 3}

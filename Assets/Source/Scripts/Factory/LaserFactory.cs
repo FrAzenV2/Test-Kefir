@@ -8,14 +8,14 @@ using Source.Scripts.Entities;
 using Source.Scripts.Enums;
 using UnityEngine;
 
-namespace Source.Scripts
+namespace Source.Scripts.Factory
 {
-    public class BulletFactory
+    public class LaserFactory 
     {
         private readonly MovementConfig _movementConfig;
         private EntityView _prefab;
 
-        public BulletFactory(MovementConfig movementConfig, EntityView prefab)
+        public LaserFactory(MovementConfig movementConfig, EntityView prefab)
         {
             _movementConfig = movementConfig;
             _prefab = prefab;
@@ -26,12 +26,12 @@ namespace Source.Scripts
             //TODO add view, collision and ignoring certain entity types
 
             var entityView = Object.Instantiate(_prefab);
-            var entity = new Entity(EntityType.Bullet, entityView);
+            var entity = new Entity(EntityType.Laser, entityView);
             entityView.SetEntity(entity);
 
             var movementComponent = new BulletMovementComponent(_movementConfig, movementData, entityView.transform);
             var dieOverTimeComponent = new DieOverTimeComponent(lifetime, entity.Erase);
-            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Player, EntityType.Bullet, EntityType.Laser }, ref entityView.OnEntityCollision,entity.Erase);
+            var damageComponent = new DamageComponent(new List<EntityType>() { EntityType.Player, EntityType.Laser }, ref entityView.OnEntityCollision,null);
 
 
             entity.FixedUpdatableComponents.Add(movementComponent);
@@ -39,6 +39,5 @@ namespace Source.Scripts
 
             return entity;
         }
-
     }
 }

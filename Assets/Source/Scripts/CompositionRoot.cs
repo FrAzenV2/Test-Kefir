@@ -4,6 +4,7 @@ using Source.Scripts.Components.UnityComponents;
 using Source.Scripts.Configs;
 using Source.Scripts.Entities;
 using Source.Scripts.Enums;
+using Source.Scripts.Factory;
 using Source.Scripts.Input;
 using Source.Scripts.Systems;
 using UnityEngine;
@@ -44,9 +45,12 @@ namespace Source.Scripts
             var bulletsData = _entityDatas.Find(x => x.EntityType == EntityType.Bullet);
             var bulletFactory = new BulletFactory((MovementConfig)bulletsData.Configs.Find(x => x is MovementConfig), bulletsData.Prefab);
 
+            var lasersData = _entityDatas.Find(x => x.EntityType == EntityType.Laser);
+            var lasersFactory = new LaserFactory((MovementConfig)lasersData.Configs.Find(x => x is MovementConfig), lasersData.Prefab);
+
             var shipData = _entityDatas.Find(x => x.EntityType == EntityType.Player);
             var shipFactory = new ShipFactory((MovementConfig)shipData.Configs.Find(x => x is MovementConfig),
-                (ShootingConfig)shipData.Configs.Find(x => x is ShootingConfig), bulletFactory, inputState, shipData.Prefab);
+                (ShootingConfig)shipData.Configs.Find(x => x is ShootingConfig), bulletFactory, lasersFactory, inputState, shipData.Prefab);
 
             var ship = shipFactory.Create();
 

@@ -3,6 +3,7 @@ using Source.Scripts.Components.UnityComponents;
 using Source.Scripts.Configs;
 using Source.Scripts.Entities;
 using Source.Scripts.Enums;
+using Source.Scripts.Factory;
 using Source.Scripts.Input;
 using UnityEngine;
 
@@ -14,13 +15,15 @@ namespace Source.Scripts
         private readonly ShootingConfig _shootingConfig;
         private readonly InputState _inputState;
         private readonly BulletFactory _bulletFactory;
+        private readonly LaserFactory _laserFactory;
         private EntityView _prefab;
 
-        public ShipFactory(MovementConfig shipMovementConfig, ShootingConfig shipShootingConfig, BulletFactory bulletFactory, InputState inputState, EntityView prefab)
+        public ShipFactory(MovementConfig shipMovementConfig, ShootingConfig shipShootingConfig, BulletFactory bulletFactory, LaserFactory laserFactory, InputState inputState, EntityView prefab)
         {
             _shipMovementConfig = shipMovementConfig;
             _shootingConfig = shipShootingConfig;
             _bulletFactory = bulletFactory;
+            _laserFactory = laserFactory;
             _inputState = inputState;
             _prefab = prefab;
         }
@@ -34,7 +37,7 @@ namespace Source.Scripts
             entityView.SetEntity(entity);
             
             var movementComponent = new ShipMovementComponent(_inputState, _shipMovementConfig, Vector2.zero, Vector2.zero, 0, entityView.transform);
-            var shootingComponent = new ShipShootingComponent(_shootingConfig, _bulletFactory, _inputState, movementComponent.MovementData);
+            var shootingComponent = new ShipShootingComponent(_shootingConfig, _bulletFactory, _laserFactory, _inputState, movementComponent.MovementData);
 
             entity.FixedUpdatableComponents.Add(movementComponent);
             entity.UpdatableComponents.Add(shootingComponent);

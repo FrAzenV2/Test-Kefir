@@ -53,6 +53,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ShootSpecial"",
+                    ""type"": ""Button"",
+                    ""id"": ""12028920-1870-47da-bf85-4add6b9dcaee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -132,6 +141,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""886156c2-fb05-496e-ba85-faee2b509114"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ShootSpecial"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -143,6 +163,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_Ship_Accelerate = m_Ship.FindAction("Accelerate", throwIfNotFound: true);
         m_Ship_Rotate = m_Ship.FindAction("Rotate", throwIfNotFound: true);
         m_Ship_Shoot = m_Ship.FindAction("Shoot", throwIfNotFound: true);
+        m_Ship_ShootSpecial = m_Ship.FindAction("ShootSpecial", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -205,6 +226,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputAction m_Ship_Accelerate;
     private readonly InputAction m_Ship_Rotate;
     private readonly InputAction m_Ship_Shoot;
+    private readonly InputAction m_Ship_ShootSpecial;
     public struct ShipActions
     {
         private @PlayerInput m_Wrapper;
@@ -212,6 +234,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         public InputAction @Accelerate => m_Wrapper.m_Ship_Accelerate;
         public InputAction @Rotate => m_Wrapper.m_Ship_Rotate;
         public InputAction @Shoot => m_Wrapper.m_Ship_Shoot;
+        public InputAction @ShootSpecial => m_Wrapper.m_Ship_ShootSpecial;
         public InputActionMap Get() { return m_Wrapper.m_Ship; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -230,6 +253,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Shoot.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnShoot;
+                @ShootSpecial.started -= m_Wrapper.m_ShipActionsCallbackInterface.OnShootSpecial;
+                @ShootSpecial.performed -= m_Wrapper.m_ShipActionsCallbackInterface.OnShootSpecial;
+                @ShootSpecial.canceled -= m_Wrapper.m_ShipActionsCallbackInterface.OnShootSpecial;
             }
             m_Wrapper.m_ShipActionsCallbackInterface = instance;
             if (instance != null)
@@ -243,6 +269,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @ShootSpecial.started += instance.OnShootSpecial;
+                @ShootSpecial.performed += instance.OnShootSpecial;
+                @ShootSpecial.canceled += instance.OnShootSpecial;
             }
         }
     }
@@ -252,5 +281,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         void OnAccelerate(InputAction.CallbackContext context);
         void OnRotate(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnShootSpecial(InputAction.CallbackContext context);
     }
 }
